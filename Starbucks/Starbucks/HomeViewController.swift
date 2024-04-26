@@ -10,6 +10,8 @@ import UIKit
 class HomeViewController: StarbucksViewController {
     
     let homeHeader = HomeHeaderView()
+    var homeHeaderTopConstraint: NSLayoutConstraint?
+    
     let tableView = UITableView()
     
     let cellId = "cellId"
@@ -32,6 +34,8 @@ extension HomeViewController {
  
     func style() {
         homeHeader.translatesAutoresizingMaskIntoConstraints = false
+        homeHeader.backgroundColor = .systemMint
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -48,9 +52,11 @@ extension HomeViewController {
         view.addSubview(homeHeader)
         view.addSubview(tableView)
         
+        homeHeaderTopConstraint = homeHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        
         NSLayoutConstraint.activate([
             // HEADER VIEW
-            homeHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            homeHeaderTopConstraint!,
             homeHeader.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             homeHeader.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             // TABLE VIEW
@@ -81,7 +87,25 @@ extension HomeViewController: UITableViewDataSource {
 
 // MARK: - TableView Delegate
 extension HomeViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y = scrollView.contentOffset.y
+        
+        let swipingDown = y <= 0
+        let shouldSnap = y > 30
+        let labelHeight = homeHeader.greeting.frame.height + 16 // label + spacer
+        
+        UIView.animate(withDuration: 0.3) {
+            self.homeHeader.greeting.alpha = swipingDown ? 1.0 : 0.0
+        }
+        
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, animations: {
+            self.homeHeaderTopConstraint?.constant = shouldSnap ? -labelHeight : 0
+            self.view.layoutIfNeeded()
+        })
     }
 }
