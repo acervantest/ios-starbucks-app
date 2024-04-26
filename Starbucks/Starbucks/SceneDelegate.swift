@@ -7,6 +7,71 @@
 
 import UIKit
 
+class StarbucksViewController: UIViewController {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func commonInit() {
+        
+    }
+    
+    func setTabBarItem(imageName: String, title: String) {
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let image = UIImage(systemName: imageName, withConfiguration: configuration)
+        tabBarItem = UITabBarItem(title: title, image: image, tag: 0)
+    }
+}
+
+class ScanViewController: StarbucksViewController {
+    override func viewDidLoad() {
+        view.backgroundColor = .systemIndigo
+        title = "Scan"
+    }
+    
+    override func commonInit() {
+        setTabBarItem(imageName: "qrcode", title: "Scan")
+    }
+}
+
+class OrderViewController: StarbucksViewController {
+    override func viewDidLoad() {
+        view.backgroundColor = .systemOrange
+        title = "Order"
+    }
+    
+    override func commonInit() {
+        setTabBarItem(imageName: "arrow.up.bin.fill", title: "Order")
+    }
+}
+
+class GiftViewController: StarbucksViewController {
+    override func viewDidLoad() {
+        view.backgroundColor = .systemGreen
+        title = "Gift"
+    }
+    
+    override func commonInit() {
+        setTabBarItem(imageName: "gift.fill", title: "Gift")
+    }
+}
+
+class StoreViewController: StarbucksViewController {
+    override func viewDidLoad() {
+        view.backgroundColor = .systemTeal
+        title = "Stores"
+    }
+    
+    override func commonInit() {
+        setTabBarItem(imageName: "location.fill", title: "Stores")
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -19,8 +84,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
+        
+        let homeVC = HomeViewController()
+        let scanVC = ScanViewController()
+        let orderVC = OrderViewController()
+        let giftVC = GiftViewController()
+        let storeVC = StoreViewController()
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homeVC, scanVC, orderVC, giftVC, storeVC]
+        
+        window?.rootViewController = tabBarController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
