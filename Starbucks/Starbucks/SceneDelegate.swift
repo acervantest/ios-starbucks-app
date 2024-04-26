@@ -100,22 +100,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [homeVC, scanNC, orderNC, giftNC, storeNC]
+        tabBarController.tabBar.tintColor = .lightGreen
+        tabBarController.tabBar.isTranslucent = false
         
         window?.rootViewController = tabBarController
-    }
-
-    func makeNavigationController(rootViewController: UIViewController) -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.navigationBar.prefersLargeTitles = true
-        
-        let attrs: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.label,
-            .font: UIFont.preferredFont(forTextStyle: .title1).bold()
-        ]
-        
-        navigationController.navigationBar.largeTitleTextAttributes = attrs
-        
-        return navigationController
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
