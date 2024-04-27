@@ -34,6 +34,7 @@ class BalanceView: UIView {
         
         starBalanceLabel.translatesAutoresizingMaskIntoConstraints = false
         starBalanceLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        starBalanceLabel.textColor = .label
         starBalanceLabel.text = "Star balance"
     }
     
@@ -49,13 +50,13 @@ class BalanceView: UIView {
             pointsLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             // STAR VIEW
             starView.leadingAnchor.constraint(equalTo: pointsLabel.trailingAnchor, constant: -2),
-            starView.centerYAnchor.constraint(equalTo: pointsLabel.centerYAnchor, constant: 0),
+            starView.centerYAnchor.constraint(equalTo: pointsLabel.centerYAnchor, constant: 4),
             starView.heightAnchor.constraint(equalToConstant: 15),
             // STAR BALANCE VIEW
             starBalanceLabel.topAnchor.constraint(equalTo: pointsLabel.bottomAnchor),
             starBalanceLabel.leadingAnchor.constraint(equalTo: pointsLabel.leadingAnchor),
             starBalanceLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            starView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            starBalanceLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
