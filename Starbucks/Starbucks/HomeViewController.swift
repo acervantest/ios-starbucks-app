@@ -15,12 +15,22 @@ class HomeViewController: StarbucksViewController {
     let scrollView = UIScrollView()
     let stackView = UIStackView()
     
+    static let title_1 = "Breakfast made meatless"
+    static let subtitle_1 = "Try the Beyond Meat, Cheddar & Egg Breakfast Sandwich. Vegetarian and protein-packed."
+    static let image_1 = "meatless"
+    
+    static let title_2 = "Uplift our communities"
+    static let subtitle_2 = "Thanks to our partners nominations, The Starbucks Foundation is donating $145K to more than 50 local charities."
+    static let image_2 = "communities"
+    
+    static let title_3 = "Spend at least $15 for 50 Bonus Stars"
+    static let subtitle_3 = "Collect 50 Bonus Stars when you spend at least $15 pre-tax."
+    static let image_3 = "bonus"
+    
     let tiles = [
-            TileView("Star Balance"),
-            TileView("Bonus Stars"),
-            TileView("Try These"),
-            TileView("Welcome Back"),
-            TileView("Uplifting")]
+           TileViewController( title: title_1, subtitle: subtitle_1, imageName: image_1),
+           TileViewController( title: title_2, subtitle: subtitle_2, imageName: image_2),
+           TileViewController( title: title_3, subtitle: subtitle_3, imageName: image_3)]
     
 
     override func viewDidLoad() {
@@ -44,7 +54,6 @@ extension HomeViewController {
  
     func style() {
         homeHeader.translatesAutoresizingMaskIntoConstraints = false
-        homeHeader.backgroundColor = .systemMint
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints  = false
