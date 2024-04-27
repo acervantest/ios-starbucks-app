@@ -28,6 +28,7 @@ class HomeViewController: StarbucksViewController {
     static let image_3 = "bonus"
     
     let tiles = [
+           RewardsTileViewController(),
            TileViewController( title: title_1, subtitle: subtitle_1, imageName: image_1),
            TileViewController( title: title_2, subtitle: subtitle_2, imageName: image_2),
            TileViewController( title: title_3, subtitle: subtitle_3, imageName: image_3)]
