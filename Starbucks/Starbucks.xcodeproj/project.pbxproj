@@ -16,6 +16,7 @@
 		BD102D362BDB5968003B27C5 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD102D352BDB5968003B27C5 /* HomeHeaderView.swift */; };
 		BD4B24482BDD9F0A0051A7E1 /* RewardsTileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B24472BDD9F0A0051A7E1 /* RewardsTileViewController.swift */; };
 		BD4B244A2BDD9F2F0051A7E1 /* RewardsTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B24492BDD9F2F0051A7E1 /* RewardsTileView.swift */; };
+		BD4B244C2BDDA2570051A7E1 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B244B2BDDA2570051A7E1 /* BalanceView.swift */; };
 		BD77436A2BDC3924004B66F8 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7743692BDC3924004B66F8 /* PlaceholderViewController.swift */; };
 		BD77436C2BDC68B8004B66F8 /* TileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD77436B2BDC68B8004B66F8 /* TileViewController.swift */; };
 		BD77436E2BDC68E8004B66F8 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD77436D2BDC68E8004B66F8 /* TileView.swift */; };
@@ -33,6 +34,7 @@
 		BD102D352BDB5968003B27C5 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		BD4B24472BDD9F0A0051A7E1 /* RewardsTileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTileViewController.swift; sourceTree = "<group>"; };
 		BD4B24492BDD9F2F0051A7E1 /* RewardsTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTileView.swift; sourceTree = "<group>"; };
+		BD4B244B2BDDA2570051A7E1 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		BD7743692BDC3924004B66F8 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		BD77436B2BDC68B8004B66F8 /* TileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileViewController.swift; sourceTree = "<group>"; };
 		BD77436D2BDC68E8004B66F8 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				BD4B24472BDD9F0A0051A7E1 /* RewardsTileViewController.swift */,
 				BD4B24492BDD9F2F0051A7E1 /* RewardsTileView.swift */,
+				BD4B244B2BDDA2570051A7E1 /* BalanceView.swift */,
 			);
 			name = Rewards;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			files = (
 				BD102D222BDA1F5C003B27C5 /* HomeViewController.swift in Sources */,
 				BD102D362BDB5968003B27C5 /* HomeHeaderView.swift in Sources */,
+				BD4B244C2BDDA2570051A7E1 /* BalanceView.swift in Sources */,
 				BD77436E2BDC68E8004B66F8 /* TileView.swift in Sources */,
 				BD102D1E2BDA1F5C003B27C5 /* AppDelegate.swift in Sources */,
 				BD4B24482BDD9F0A0051A7E1 /* RewardsTileViewController.swift in Sources */,
