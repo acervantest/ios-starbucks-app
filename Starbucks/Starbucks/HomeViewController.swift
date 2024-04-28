@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: StarbucksViewController {
     
+    let topSpacerView = UIView()
     let homeHeader = HomeHeaderView()
     var homeHeaderTopConstraint: NSLayoutConstraint?
     
@@ -54,6 +55,11 @@ extension HomeViewController {
     }
  
     func style() {
+        
+        view.backgroundColor = .backgroundWhite
+        topSpacerView.backgroundColor = .white
+        
+        topSpacerView.translatesAutoresizingMaskIntoConstraints = false
         homeHeader.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +70,7 @@ extension HomeViewController {
     }
     
     func layout() {
-        
+        view.addSubview(topSpacerView)
         view.addSubview(homeHeader)
         view.addSubview(scrollView)
         
@@ -79,6 +85,10 @@ extension HomeViewController {
         homeHeaderTopConstraint = homeHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         
         NSLayoutConstraint.activate([
+            topSpacerView.topAnchor.constraint(equalTo: view.topAnchor),
+            topSpacerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topSpacerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topSpacerView.heightAnchor.constraint(equalToConstant: 100),
             // HEADER VIEW
             homeHeaderTopConstraint!,
             homeHeader.leadingAnchor.constraint(equalTo: view.leadingAnchor),

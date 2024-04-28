@@ -26,9 +26,6 @@ class RewardsTileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 300)
-    }
 }
 
 extension RewardsTileView {
@@ -51,7 +48,7 @@ extension RewardsTileView {
     
     func makeRewardsOptionButton() {
           rewardsButton.translatesAutoresizingMaskIntoConstraints = false
-          //rewardsButton.addTarget(self, action: #selector(rewardOptionsTapped), for: .primaryActionTriggered)
+          rewardsButton.addTarget(self, action: #selector(rewardOptionsTapped), for: .primaryActionTriggered)
 
           let configuration = UIImage.SymbolConfiguration(scale: .small)
           let image = UIImage(systemName: "chevron.down", withConfiguration: configuration)
@@ -110,5 +107,53 @@ extension RewardsTileView {
         
         rewardsGraphView.actualFrameWidth = frame.width
         rewardsGraphView.drawRewardsGraph()
+    }
+}
+
+// MARK: - Actions
+extension RewardsTileView {
+    @objc func rewardOptionsTapped() {
+        if heightConstraint?.constant == 0 {
+            
+            self.setChevronUp()
+            
+            let heightAnimator = UIViewPropertyAnimator(duration: 0.75, curve: .easeInOut) {
+                self.heightConstraint?.constant = 270
+                self.layoutIfNeeded()
+            }
+            
+            heightAnimator.startAnimation()
+            
+            let alphaAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeInOut) {
+                self.starRewardsView.isHidden = false
+                self.starRewardsView.alpha = 1
+            }
+            
+            alphaAnimator.startAnimation(afterDelay: 0.5)
+            
+        } else {
+            
+            self.setChevronDown()
+            
+            let animator = UIViewPropertyAnimator(duration: 0.75, curve: .easeInOut) {
+                self.heightConstraint?.constant = 0
+                self.starRewardsView.isHidden = true
+                self.starRewardsView.alpha = 0
+                self.layoutIfNeeded()
+            }
+            animator.startAnimation()
+        }
+    }
+    
+    private func setChevronUp() {
+        let configuration = UIImage.SymbolConfiguration(scale: .small)
+        let image = UIImage(systemName: "chevron.up",  withConfiguration: configuration)
+        rewardsButton.setImage(image, for: .normal)
+    }
+    
+    private func setChevronDown() {
+        let configuration = UIImage.SymbolConfiguration(scale: .small)
+        let image = UIImage(systemName: "chevron.down",  withConfiguration: configuration)
+        rewardsButton.setImage(image, for: .normal)
     }
 }
