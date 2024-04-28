@@ -11,9 +11,11 @@ class RewardsTileView: UIView {
     
     let balanceView = BalanceView()
     var rewardsButton = UIButton()
-    let rewardsGraphView = UIView()
-    let starRewardsView = UIView()
+    let rewardsGraphView = RewardsGraphView()
+    let starRewardsView = StarRewardsView()
     var detailsButton = UIButton()
+    
+    var heightConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -43,7 +45,7 @@ extension RewardsTileView {
         detailsButton.translatesAutoresizingMaskIntoConstraints = false
         
         makeRewardsOptionButton()
-        rewardsGraphView.backgroundColor = .systemMint
+        
         detailsButton = makeClearButton(withText: "Details")
     }
     
@@ -74,6 +76,8 @@ extension RewardsTileView {
         addSubview(starRewardsView)
         addSubview(detailsButton)
         
+        heightConstraint = starRewardsView.heightAnchor.constraint(equalToConstant: 0)
+        
         NSLayoutConstraint.activate([
             // BALANCE VIEW
             balanceView.topAnchor.constraint(equalTo: topAnchor),
@@ -84,18 +88,27 @@ extension RewardsTileView {
             // REWARDS GRAPH
             rewardsGraphView.topAnchor.constraint(equalToSystemSpacingBelow: balanceView.bottomAnchor, multiplier: 1),
             rewardsGraphView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            //rewardsGraphView.widthAnchor.constraint(equalToConstant: frame.width),
-            rewardsGraphView.heightAnchor.constraint(equalToConstant: 100),
+            rewardsGraphView.widthAnchor.constraint(equalToConstant: frame.width),
             rewardsGraphView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: rewardsGraphView.trailingAnchor, multiplier: 2),
             // STAR REWARDS VIEW
             starRewardsView.topAnchor.constraint(equalTo: rewardsGraphView.bottomAnchor, constant: 8),
             starRewardsView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
             trailingAnchor.constraint(equalToSystemSpacingAfter: starRewardsView.trailingAnchor, multiplier: 1),
+            heightConstraint!,
             // DETAILS BUTTON
             detailsButton.topAnchor.constraint(equalToSystemSpacingBelow: starRewardsView.bottomAnchor, multiplier: 2),
             detailsButton.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor),
             bottomAnchor.constraint(equalToSystemSpacingBelow: detailsButton.bottomAnchor, multiplier: 2)
         ])
+        
+        starRewardsView.isHidden = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        rewardsGraphView.actualFrameWidth = frame.width
+        rewardsGraphView.drawRewardsGraph()
     }
 }
